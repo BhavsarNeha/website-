@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Foundora - Clone</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      /* Reset and base styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, sans-serif;
+      }
+
+      body {
+        color: #1a1a1a;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      /* Header styles */
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem 5%;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        background-color: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+      }
+
+      .logo {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #2563eb;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+
+      .nav-links a:hover {
+        color: #2563eb;
+      }
+
+      .header-cta {
+        background-color: #2563eb;
+        color: white;
+        padding: 0.6rem 1.2rem;
+        border-radius: 6px;
+        font-weight: 500;
+        transition: background-color 0.3s;
+      }
+
+      .header-cta:hover {
+        background-color: #1d4ed8;
+      }
+
+      .mobile-menu-btn {
+        display: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+
+      /* Hero section */
+      .hero {
+        padding: 10rem 5% 5rem;
+        background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+        background: linear-gradient(90deg, #2563eb 0%, #3b82f6 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .hero p {
+        font-size: 1.25rem;
+        max-width: 700px;
+        margin: 0 auto 2.5rem;
+        color: #64748b;
+      }
+
+      .hero-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        margin-bottom: 3rem;
+      }
+
+      .primary-btn {
+        background-color: #2563eb;
+        color: white;
+        padding: 0.9rem 1.8rem;
+        border-radius: 6px;
+        font-weight: 500;
+        transition: all 0.3s;
+      }
+
+      .primary-btn:hover {
+        background-color: #1d4ed8;
+        transform: translateY(-2px);
+      }
+
+      .secondary-btn {
+        background-color: white;
+        color: #2563eb;
+        padding: 0.9rem 1.8rem;
+        border-radius: 6px;
+        font-weight: 500;
+        border: 1px solid #e2e8f0;
+        transition: all 0.3s;
+      }
+
+      .secondary-btn:hover {
+        background-color: #f8fafc;
+        transform: translateY(-2px);
+      }
+
+      .hero-image {
+        max-width: 900px;
+        margin: 0 auto;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+          0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      }
+
+      .hero-image img {
+        width: 100%;
+        display: block;
+      }
+
+      /* Features section */
+      .features {
+        padding: 6rem 5%;
+        background-color: white;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+
+      .section-title h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: #1e293b;
+      }
+
+      .section-title p {
+        font-size: 1.125rem;
+        color: #64748b;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .feature-card {
+        padding: 2rem;
+        border-radius: 12px;
+        background-color: #f8fafc;
+        transition: all 0.3s;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      }
+
+      .feature-icon {
+        width: 60px;
+        height: 60px;
+        background-color: #dbeafe;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+        color: #2563eb;
+        font-size: 1.5rem;
+      }
+
+      .feature-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: #1e293b;
+      }
+
+      .feature-card p {
+        color: #64748b;
+      }
+
+      /* Testimonials */
+      .testimonials {
+        padding: 6rem 5%;
+        background-color: #f1f5f9;
+      }
+
+      .testimonials-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .testimonial-card {
+        padding: 2.5rem;
+        border-radius: 12px;
+        background-color: white;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      }
+
+      .testimonial-text {
+        font-size: 1.125rem;
+        color: #475569;
+        margin-bottom: 1.5rem;
+        line-height: 1.7;
+      }
+
+      .testimonial-author {
+        display: flex;
+        align-items: center;
+      }
+
+      .author-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: #e2e8f0;
+        margin-right: 1rem;
+        overflow: hidden;
+      }
+
+      .author-details h4 {
+        font-weight: 600;
+        color: #1e293b;
+      }
+
+      .author-details p {
+        color: #64748b;
+        font-size: 0.875rem;
+      }
+
+      /* CTA section */
+      .cta {
+        padding: 6rem 5%;
+        background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+        color: white;
+        text-align: center;
+      }
+
+      .cta h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .cta p {
+        font-size: 1.125rem;
+        max-width: 600px;
+        margin: 0 auto 2.5rem;
+        opacity: 0.9;
+      }
+
+      .cta-button {
+        display: inline-block;
+        background-color: white;
+        color: #2563eb;
+        padding: 1rem 2rem;
+        border-radius: 6px;
+        font-weight: 600;
+        transition: all 0.3s;
+      }
+
+      .cta-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Footer */
+      footer {
+        padding: 4rem 5% 2rem;
+        background-color: #0f172a;
+        color: #cbd5e1;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 3rem;
+        max-width: 1200px;
+        margin: 0 auto 3rem;
+      }
+
+      .footer-logo {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 1rem;
+      }
+
+      .footer-about p {
+        margin-bottom: 1.5rem;
+        line-height: 1.7;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .social-links a {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #1e293b;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+      }
+
+      .social-links a:hover {
+        background-color: #2563eb;
+        transform: translateY(-3px);
+      }
+
+      .footer-links h3 {
+        color: white;
+        margin-bottom: 1.5rem;
+        font-size: 1.125rem;
+      }
+
+      .footer-links ul {
+        list-style: none;
+      }
+
+      .footer-links li {
+        margin-bottom: 0.8rem;
+      }
+
+      .footer-links a {
+        transition: color 0.3s;
+      }
+
+      .footer-links a:hover {
+        color: white;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid #334155;
+        max-width: 1200px;
+        margin: 0 auto;
+        font-size: 0.875rem;
+      }
+
+      /* Responsive styles */
+      @media (max-width: 992px) {
+        .features-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .testimonials-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-content {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav-links,
+        .header-cta {
+          display: none;
+        }
+
+        .mobile-menu-btn {
+          display: block;
+        }
+
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .hero-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .features-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-content {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <a href="#" class="logo">Foundora</a>
+      <nav class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">Services</a>
+        <a href="#">Features</a>
+        <a href="#">Pricing</a>
+        <a href="#">About</a>
+      </nav>
+      <a href="#" class="header-cta">Get Started</a>
+      <div class="mobile-menu-btn">
+        <i class="fas fa-bars"></i>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <h1>Transform Your Business with Powerful Solutions</h1>
+      <p>
+        Foundora provides the tools and expertise to help your business grow,
+        innovate, and succeed in the digital age.
+      </p>
+      <div class="hero-buttons">
+        <a href="#" class="primary-btn">Get Started</a>
+        <a href="#" class="secondary-btn">Learn More</a>
+      </div>
+      <div class="hero-image">
+        <img
+          src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1415&q=80"
+          alt="Dashboard illustration"
+        />
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+      <div class="section-title">
+        <h2>Why Choose Foundora</h2>
+        <p>
+          Our platform offers everything you need to accelerate your business
+          growth
+        </p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3>Advanced Analytics</h3>
+          <p>
+            Gain valuable insights with our powerful analytics tools that help
+            you make data-driven decisions.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-lock"></i>
+          </div>
+          <h3>Secure & Reliable</h3>
+          <p>
+            Your data is protected with enterprise-grade security measures and
+            99.9% uptime guarantee.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-cogs"></i>
+          </div>
+          <h3>Customizable Solutions</h3>
+          <p>
+            Tailor our platform to meet your specific business needs with
+            flexible customization options.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h3>Dedicated Support</h3>
+          <p>
+            Our team of experts is available 24/7 to help you succeed and
+            overcome any challenges.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-rocket"></i>
+          </div>
+          <h3>Fast Implementation</h3>
+          <p>
+            Get up and running quickly with our streamlined onboarding process
+            and intuitive interface.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-dollar-sign"></i>
+          </div>
+          <h3>Cost Effective</h3>
+          <p>
+            Maximize your ROI with our affordable pricing plans designed for
+            businesses of all sizes.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+      <div class="section-title">
+        <h2>What Our Clients Say</h2>
+        <p>
+          Hear from businesses that have transformed their operations with
+          Foundora
+        </p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <p class="testimonial-text">
+            "Foundora has completely revolutionized how we manage our business.
+            The insights we've gained have helped us increase revenue by 35% in
+            just six months."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">
+              <img
+                src="https://randomuser.me/api/portraits/women/45.jpg"
+                alt="Sarah Johnson"
+              />
+            </div>
+            <div class="author-details">
+              <h4>Sarah Johnson</h4>
+              <p>CEO, TechInnovate</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-text">
+            "The implementation was seamless, and the support team was
+            incredibly helpful throughout the process. We've seen efficiency
+            improvements across all departments."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">
+              <img
+                src="https://randomuser.me/api/portraits/men/32.jpg"
+                alt="Michael Chen"
+              />
+            </div>
+            <div class="author-details">
+              <h4>Michael Chen</h4>
+              <p>Operations Director, GrowthLab</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+      <h2>Ready to Transform Your Business?</h2>
+      <p>
+        Join thousands of companies that trust Foundora to power their growth
+        and success.
+      </p>
+      <a href="#" class="cta-button">Get Started Today</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-about">
+          <div class="footer-logo">Foundora</div>
+          <p>
+            Providing innovative business solutions to help companies of all
+            sizes achieve their goals and maximize potential.
+          </p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h3>Company</h3>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Press</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Partners</a></li>
+            <li><a href="#">Community</a></li>
+            <li><a href="#">Webinars</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h3>Legal</h3>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Cookie Policy</a></li>
+            <li><a href="#">Disclaimer</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2023 Foundora. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      // Header scroll effect
+      window.addEventListener("scroll", function () {
+        const header = document.querySelector("header");
+        if (window.scrollY > 50) {
+          header.style.padding = "1rem 5%";
+          header.style.boxShadow = "0 2px 10px rgba(0, 0, 0, 0.1)";
+        } else {
+          header.style.padding = "1.5rem 5%";
+          header.style.boxShadow = "0 2px 10px rgba(0, 0, 0, 0.05)";
+        }
+      });
+
+      // Mobile menu toggle
+      const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
+      const navLinks = document.querySelector(".nav-links");
+
+      mobileMenuBtn.addEventListener("click", function () {
+        navLinks.style.display =
+          navLinks.style.display === "flex" ? "none" : "flex";
+      });
+
+      // Testimonial rotation
+      const testimonials = document.querySelectorAll(".testimonial-card");
+      let currentTestimonial = 0;
+
+      function rotateTestimonials() {
+        testimonials.forEach((testimonial, index) => {
+          testimonial.style.opacity = index === currentTestimonial ? "1" : "0";
+          testimonial.style.transform =
+            index === currentTestimonial ? "translateY(0)" : "translateY(20px)";
+          testimonial.style.transition = "all 0.5s ease";
+          testimonial.style.position = "absolute";
+        });
+
+        currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+      }
+
+      // Set initial positions
+      testimonials.forEach((testimonial, index) => {
+        if (index !== 0) {
+          testimonial.style.opacity = "0";
+          testimonial.style.transform = "translateY(20px)";
+        }
+      });
+
+      // Start rotation
+      // setInterval(rotateTestimonials, 5000);
+    </script>
+  </body>
+</html>
