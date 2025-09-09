@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Foundora - Innovative Solutions</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Raleway:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Reset and base styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary: #6c42f5;
+        --secondary: #ff4e7d;
+        --accent: #36d6e7;
+        --dark: #0f0f1e;
+        --darker: #090914;
+        --text: #ffffff;
+        --text-secondary: #b0b0c0;
+      }
+
+      body {
+        background-color: var(--darker);
+        color: var(--text);
+        font-family: "Raleway", sans-serif;
+        line-height: 1.6;
+        overflow-x: hidden;
+        background-image: radial-gradient(
+            circle at 15% 50%,
+            rgba(108, 66, 245, 0.1),
+            transparent 25%
+          ),
+          radial-gradient(
+            circle at 85% 30%,
+            rgba(255, 78, 125, 0.1),
+            transparent 25%
+          ),
+          radial-gradient(
+            circle at 50% 80%,
+            rgba(54, 214, 231, 0.1),
+            transparent 25%
+          );
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      /* Header styles */
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem 5%;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        background-color: rgba(15, 15, 30, 0.8);
+        backdrop-filter: blur(10px);
+        transition: all 0.4s ease;
+      }
+
+      header.scrolled {
+        padding: 1rem 5%;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .logo {
+        font-size: 1.8rem;
+        font-weight: 700;
+        background: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--secondary) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        display: flex;
+        align-items: center;
+      }
+
+      .logo i {
+        margin-right: 0.5rem;
+        color: var(--accent);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        font-weight: 500;
+        transition: all 0.3s;
+        position: relative;
+      }
+
+      .nav-links a:after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        transition: width 0.3s ease;
+      }
+
+      .nav-links a:hover:after {
+        width: 100%;
+      }
+
+      .nav-links a:hover {
+        color: var(--accent);
+      }
+
+      .header-cta {
+        background: linear-gradient(
+          90deg,
+          var(--primary) 0%,
+          var(--secondary) 100%
+        );
+        color: white;
+        padding: 0.7rem 1.5rem;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: all 0.3s;
+        box-shadow: 0 4px 15px rgba(108, 66, 245, 0.3);
+      }
+
+      .header-cta:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(108, 66, 245, 0.5);
+      }
+
+      .mobile-menu-btn {
+        display: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--text);
+      }
+
+      /* Hero section */
+      .hero {
+        padding: 12rem 5% 8rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-content {
+        max-width: 900px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+        background: linear-gradient(
+          135deg,
+          #6c42f5 0%,
+          #ff4e7d 30%,
+          #36d6e7 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: gradientShift 8s ease infinite;
+        background-size: 200% 200%;
+      }
+
+      .hero p {
+        font-size: 1.25rem;
+        max-width: 700px;
+        margin: 0 auto 2.5rem;
+        color: var(--text-secondary);
+      }
+
+      .hero-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        margin-bottom: 5rem;
+      }
+
+      .primary-btn {
+        background: linear-gradient(
+          90deg,
+          var(--primary) 0%,
+          var(--secondary) 100%
+        );
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: all 0.3s;
+        box-shadow: 0 4px 15px rgba(108, 66, 245, 0.3);
+      }
+
+      .primary-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(108, 66, 245, 0.5);
+      }
+
+      .secondary-btn {
+        background: transparent;
+        color: var(--text);
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        font-weight: 600;
+        border: 2px solid var(--primary);
+        transition: all 0.3s;
+      }
+
+      .secondary-btn:hover {
+        background: rgba(108, 66, 245, 0.1);
+        transform: translateY(-3px);
+      }
+
+      .hero-image {
+        max-width: 1000px;
+        margin: 0 auto;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        position: relative;
+        z-index: 2;
+        transform: perspective(1000px) rotateX(10deg);
+        transition: transform 0.5s;
+      }
+
+      .hero-image:hover {
+        transform: perspective(1000px) rotateX(0);
+      }
+
+      .hero-image img {
+        width: 100%;
+        display: block;
+      }
+
+      /* Animated globe */
+      .globe-container {
+        position: absolute;
+        top: 50%;
+        right: 10%;
+        width: 300px;
+        height: 300px;
+        transform: translateY(-50%);
+        z-index: 1;
+      }
+
+      .globe {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle at 30% 30%,
+          rgba(54, 214, 231, 0.8),
+          rgba(108, 66, 245, 0.5) 60%
+        );
+        box-shadow: inset 0 0 50px #fff, inset 20px 0 80px var(--primary),
+          inset -20px 0 80px var(--accent), inset 20px 0 300px var(--primary),
+          inset -20px 0 300px var(--accent), 0 0 50px #fff,
+          -10px 0 80px var(--primary), 10px 0 80px var(--accent);
+        animation: rotate 30s linear infinite;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .globe:before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.2);
+        box-shadow: 0 0 50px rgba(0, 0, 0, 0.5) inset;
+      }
+
+      /* Features section */
+      .features {
+        padding: 8rem 5%;
+        background-color: var(--dark);
+        position: relative;
+        z-index: 2;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 5rem;
+      }
+
+      .section-title h2 {
+        font-size: 2.8rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        background: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--accent) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .section-title p {
+        font-size: 1.2rem;
+        color: var(--text-secondary);
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2.5rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .feature-card {
+        padding: 2.5rem;
+        border-radius: 20px;
+        background: linear-gradient(
+          145deg,
+          rgba(15, 15, 30, 0.6),
+          rgba(25, 25, 45, 0.6)
+        );
+        backdrop-filter: blur(10px);
+        transition: all 0.4s;
+        border: 1px solid rgba(108, 66, 245, 0.2);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .feature-card:before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        z-index: -1;
+        background: linear-gradient(
+          45deg,
+          var(--primary),
+          var(--secondary),
+          var(--accent),
+          var(--primary)
+        );
+        background-size: 400% 400%;
+        animation: gradientShift 6s ease infinite;
+        border-radius: 20px;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+      }
+
+      .feature-icon {
+        width: 70px;
+        height: 70px;
+        background: linear-gradient(145deg, var(--primary), var(--secondary));
+        border-radius: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+        color: white;
+        font-size: 1.8rem;
+        box-shadow: 0 5px 15px rgba(108, 66, 245, 0.4);
+      }
+
+      .feature-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: var(--text);
+      }
+
+      .feature-card p {
+        color: var(--text-secondary);
+        line-height: 1.7;
+      }
+
+      /* Testimonials */
+      .testimonials {
+        padding: 8rem 5%;
+        background-color: var(--darker);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .testimonials-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.5rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .testimonial-card {
+        padding: 2.5rem;
+        border-radius: 20px;
+        background: linear-gradient(
+          145deg,
+          rgba(15, 15, 30, 0.6),
+          rgba(25, 25, 45, 0.6)
+        );
+        backdrop-filter: blur(10px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(108, 66, 245, 0.2);
+        transition: all 0.4s;
+      }
+
+      .testimonial-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+      }
+
+      .testimonial-text {
+        font-size: 1.1rem;
+        color: var(--text);
+        margin-bottom: 1.5rem;
+        line-height: 1.7;
+        font-style: italic;
+      }
+
+      .testimonial-author {
+        display: flex;
+        align-items: center;
+      }
+
+      .author-avatar {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: linear-gradient(145deg, var(--primary), var(--secondary));
+        margin-right: 1rem;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+      }
+
+      .author-details h4 {
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 0.3rem;
+      }
+
+      .author-details p {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+      }
+
+      /* CTA section */
+      .cta {
+        padding: 8rem 5%;
+        background: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--secondary) 100%
+        );
+        color: white;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cta h2 {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+        font-weight: 700;
+      }
+
+      .cta p {
+        font-size: 1.3rem;
+        max-width: 600px;
+        margin: 0 auto 3rem;
+        opacity: 0.9;
+      }
+
+      .cta-button {
+        display: inline-block;
+        background-color: var(--dark);
+        color: white;
+        padding: 1.2rem 2.5rem;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: all 0.3s;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        background-color: var(--darker);
+      }
+
+      /* Footer */
+      footer {
+        padding: 5rem 5% 2rem;
+        background-color: var(--darker);
+        color: var(--text-secondary);
+        position: relative;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 3rem;
+        max-width: 1200px;
+        margin: 0 auto 3rem;
+      }
+
+      .footer-logo {
+        font-size: 2rem;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+      }
+
+      .footer-about p {
+        margin-bottom: 1.5rem;
+        line-height: 1.7;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .social-links a {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background: linear-gradient(145deg, var(--primary), var(--secondary));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+        color: white;
+        font-size: 1.2rem;
+      }
+
+      .social-links a:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(108, 66, 245, 0.4);
+      }
+
+      .footer-links h3 {
+        color: white;
+        margin-bottom: 1.5rem;
+        font-size: 1.2rem;
+      }
+
+      .footer-links ul {
+        list-style: none;
+      }
+
+      .footer-links li {
+        margin-bottom: 0.8rem;
+      }
+
+      .footer-links a {
+        transition: color 0.3s;
+      }
+
+      .footer-links a:hover {
+        color: var(--accent);
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        max-width: 1200px;
+        margin: 0 auto;
+        font-size: 0.9rem;
+      }
+
+      /* Modal styles */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(5px);
+        z-index: 2000;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .modal.active {
+        display: flex;
+        opacity: 1;
+      }
+
+      .modal-content {
+        background: var(--dark);
+        width: 100%;
+        max-width: 500px;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+        transform: scale(0.9);
+        transition: transform 0.3s ease;
+        position: relative;
+      }
+
+      .modal.active .modal-content {
+        transform: scale(1);
+      }
+
+      .modal-header {
+        background: linear-gradient(
+          90deg,
+          var(--primary) 0%,
+          var(--secondary) 100%
+        );
+        padding: 1.5rem 2rem;
+        text-align: center;
+      }
+
+      .modal-header h2 {
+        font-size: 1.8rem;
+        color: white;
+      }
+
+      .modal-body {
+        padding: 2rem;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: var(--text);
+        font-weight: 500;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 1rem;
+        border-radius: 10px;
+        border: 1px solid rgba(108, 66, 245, 0.3);
+        background: rgba(15, 15, 30, 0.6);
+        color: var(--text);
+        font-size: 1rem;
+        transition: all 0.3s;
+      }
+
+      .form-group input:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 2px rgba(108, 66, 245, 0.3);
+      }
+
+      .login-btn {
+        width: 100%;
+        padding: 1rem;
+        border-radius: 10px;
+        border: none;
+        background: linear-gradient(
+          90deg,
+          var(--primary) 0%,
+          var(--secondary) 100%
+        );
+        color: white;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        margin-top: 1rem;
+      }
+
+      .login-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(108, 66, 245, 0.4);
+      }
+
+      .modal-footer {
+        padding: 1.5rem 2rem;
+        text-align: center;
+        background: rgba(15, 15, 30, 0.8);
+        color: var(--text-secondary);
+      }
+
+      .modal-footer a {
+        color: var(--accent);
+        font-weight: 600;
+      }
+
+      .close-modal {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+      }
+
+      /* Animations */
+      @keyframes gradientShift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      @keyframes rotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+
+      /* Responsive styles */
+      @media (max-width: 992px) {
+        .features-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .testimonials-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-content {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .globe-container {
+          display: none;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav-links,
+        .header-cta {
+          display: none;
+        }
+
+        .mobile-menu-btn {
+          display: block;
+        }
+
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .hero-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .features-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-content {
+          grid-template-columns: 1fr;
+        }
+
+        .hero {
+          padding: 10rem 5% 5rem;
+        }
+      }
+
+      /* Particle effect */
+      .particles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        overflow: hidden;
+      }
+
+      .particle {
+        position: absolute;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        border-radius: 50%;
+        opacity: 0.5;
+        animation: float 8s infinite ease-in-out;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <a href="#" class="logo"> <i class="fas fa-brain"></i>Foundora </a>
+      <nav class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">Services</a>
+        <a href="#">Features</a>
+        <a href="#">Pricing</a>
+        <a href="#">About</a>
+      </nav>
+      <a href="#" class="header-cta" id="getStartedBtn">Get Started</a>
+      <div class="mobile-menu-btn">
+        <i class="fas fa-bars"></i>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="particles" id="particles"></div>
+      <div class="globe-container">
+        <div class="globe"></div>
+      </div>
+      <div class="hero-content">
+        <h1>Transform Your Digital Experience</h1>
+        <p>
+          Foundora provides cutting-edge solutions to help your business thrive
+          in the digital age. Our innovative platform combines power,
+          flexibility, and simplicity.
+        </p>
+        <div class="hero-buttons">
+          <a href="#" class="primary-btn" id="heroGetStartedBtn">Get Started</a>
+          <a href="#" class="secondary-btn">Learn More</a>
+        </div>
+        <div class="hero-image">
+          <img
+            src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+            alt="Dashboard illustration"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+      <div class="section-title">
+        <h2>Why Choose Foundora</h2>
+        <p>
+          Our platform offers everything you need to accelerate your business
+          growth
+        </p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-rocket"></i>
+          </div>
+          <h3>Lightning Fast</h3>
+          <p>
+            Experience unparalleled speed with our optimized architecture and
+            global CDN integration.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3>Military Grade Security</h3>
+          <p>
+            Your data is protected with enterprise-grade security measures and
+            99.9% uptime guarantee.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-cogs"></i>
+          </div>
+          <h3>Customizable Solutions</h3>
+          <p>
+            Tailor our platform to meet your specific business needs with
+            flexible customization options.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h3>Dedicated Support</h3>
+          <p>
+            Our team of experts is available 24/7 to help you succeed and
+            overcome any challenges.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3>Advanced Analytics</h3>
+          <p>
+            Gain valuable insights with our powerful analytics tools that help
+            you make data-driven decisions.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-dollar-sign"></i>
+          </div>
+          <h3>Cost Effective</h3>
+          <p>
+            Maximize your ROI with our affordable pricing plans designed for
+            businesses of all sizes.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+      <div class="section-title">
+        <h2>What Our Clients Say</h2>
+        <p>
+          Hear from businesses that have transformed their operations with
+          Foundora
+        </p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <p class="testimonial-text">
+            "Foundora has completely revolutionized how we manage our business.
+            The insights we've gained have helped us increase revenue by 35% in
+            just six months."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="author-details">
+              <h4>Sarah Johnson</h4>
+              <p>CEO, TechInnovate</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-text">
+            "The implementation was seamless, and the support team was
+            incredibly helpful throughout the process. We've seen efficiency
+            improvements across all departments."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="author-details">
+              <h4>Michael Chen</h4>
+              <p>Operations Director, GrowthLab</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+      <h2>Ready to Transform Your Business?</h2>
+      <p>
+        Join thousands of companies that trust Foundora to power their growth
+        and success.
+      </p>
+      <a href="#" class="cta-button" id="ctaGetStartedBtn">Get Started Today</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-about">
+          <div class="footer-logo"><i class="fas fa-brain"></i>Foundora</div>
+          <p>
+            Providing innovative business solutions to help companies of all
+            sizes achieve their goals and maximize potential.
+          </p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h3>Company</h3>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Press</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Partners</a></li>
+            <li><a href="#">Community</a></li>
+            <li><a href="#">Webinars</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h3>Legal</h3>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Cookie Policy</a></li>
+            <li><a href="#">Disclaimer</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2023 Foundora. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+      <div class="modal-content">
+        <button class="close-modal" id="closeModal">&times;</button>
+        <div class="modal-header">
+          <h2>Login to Your Account</h2>
+        </div>
+        <div class="modal-body">
+          <form id="loginForm">
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input
+                type="email"
+                id="email"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                placeholder="Enter your password"
+                required
+              />
+            </div>
+            <button type="submit" class="login-btn">Login</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <p>Don't have an account? <a href="#">Sign up</a></p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Header scroll effect
+      window.addEventListener("scroll", function () {
+        const header = document.querySelector("header");
+        if (window.scrollY > 50) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+      });
+
+      // Modal functionality
+      const modal = document.getElementById("loginModal");
+      const getStartedBtns = document.querySelectorAll(
+        "#getStartedBtn, #heroGetStartedBtn, #ctaGetStartedBtn"
+      );
+      const closeModal = document.getElementById("closeModal");
+      const loginForm = document.getElementById("loginForm");
+
+      getStartedBtns.forEach((btn) => {
+        btn.addEventListener("click", function (e) {
+          e.preventDefault();
+          modal.classList.add("active");
+          document.body.style.overflow = "hidden";
+        });
+      });
+
+      closeModal.addEventListener("click", function () {
+        modal.classList.remove("active");
+        document.body.style.overflow = "auto";
+      });
+
+      window.addEventListener("click", function (e) {
+        if (e.target === modal) {
+          modal.classList.remove("active");
+          document.body.style.overflow = "auto";
+        }
+      });
+
+      loginForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        // In a real application, you would send this data to your server
+        console.log("Login attempt with:", { email, password });
+
+        // Simulate successful login
+        alert(
+          "Login successful! In a real application, this would connect to a database."
+        );
+
+        // Close the modal
+        modal.classList.remove("active");
+        document.body.style.overflow = "auto";
+      });
+
+      // Create particle effect
+      function createParticles() {
+        const particlesContainer = document.getElementById("particles");
+        const particleCount = 50;
+
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement("div");
+          particle.classList.add("particle");
+
+          // Random properties
+          const size = Math.random() * 10 + 2;
+          const posX = Math.random() * 100;
+          const posY = Math.random() * 100;
+          const delay = Math.random() * 5;
+          const duration = Math.random() * 10 + 5;
+
+          particle.style.width = `${size}px`;
+          particle.style.height = `${size}px`;
+          particle.style.left = `${posX}%`;
+          particle.style.top = `${posY}%`;
+          particle.style.animationDelay = `${delay}s`;
+          particle.style.animationDuration = `${duration}s`;
+
+          particlesContainer.appendChild(particle);
+        }
+      }
+
+      // Initialize
+      document.addEventListener("DOMContentLoaded", function () {
+        createParticles();
+      });
+    </script>
+  </body>
+</html>
