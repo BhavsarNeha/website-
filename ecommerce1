@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Estorex - Intelligent E-commerce Platform</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      /* Global Styles */
+      :root {
+        --primary: #4a6cfa;
+        --secondary: #ff6b6b;
+        --dark: #2d3436;
+        --light: #f5f6fa;
+        --success: #2ecc71;
+        --warning: #f39c12;
+        --gray: #dfe6e9;
+        --text: #2d3436;
+        --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: #f8f9fa;
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+      }
+
+      /* Header Styles */
+      header {
+        background-color: white;
+        box-shadow: var(--shadow);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 0;
+      }
+
+      .logo {
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--primary);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+      }
+
+      .logo i {
+        margin-right: 10px;
+      }
+
+      .search-bar {
+        flex: 1;
+        max-width: 500px;
+        margin: 0 20px;
+        position: relative;
+      }
+
+      .search-bar input {
+        width: 100%;
+        padding: 10px 15px;
+        border: 1px solid var(--gray);
+        border-radius: 30px;
+        font-size: 14px;
+      }
+
+      .search-bar button {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        color: var(--primary);
+        cursor: pointer;
+      }
+
+      .nav-icons {
+        display: flex;
+        align-items: center;
+      }
+
+      .nav-icon {
+        margin-left: 20px;
+        font-size: 18px;
+        color: var(--dark);
+        position: relative;
+        cursor: pointer;
+      }
+
+      .cart-count {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background-color: var(--secondary);
+        color: white;
+        font-size: 12px;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* Navigation */
+      nav {
+        background-color: var(--primary);
+        padding: 10px 0;
+      }
+
+      .categories {
+        display: flex;
+        list-style: none;
+        justify-content: center;
+      }
+
+      .categories li {
+        margin: 0 15px;
+      }
+
+      .categories a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        transition: opacity 0.3s;
+      }
+
+      .categories a:hover {
+        opacity: 0.8;
+      }
+
+      /* Hero Section */
+      .hero {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+          url("https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80");
+        background-size: cover;
+        background-position: center;
+        color: white;
+        padding: 80px 0;
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        max-width: 600px;
+        margin: 0 auto 30px;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 12px 25px;
+        background-color: var(--primary);
+        color: white;
+        border: none;
+        border-radius: 30px;
+        font-weight: 600;
+        cursor: pointer;
+        text-decoration: none;
+        transition: all 0.3s;
+      }
+
+      .btn:hover {
+        background-color: #3a5bd9;
+        transform: translateY(-2px);
+      }
+
+      /* Featured Products */
+      .section-title {
+        text-align: center;
+        margin: 40px 0 30px;
+        font-size: 1.8rem;
+        color: var(--dark);
+      }
+
+      .products {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 25px;
+        margin-bottom: 40px;
+      }
+
+      .product-card {
+        background-color: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        transition: transform 0.3s;
+      }
+
+      .product-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .product-img {
+        height: 200px;
+        width: 100%;
+        object-fit: cover;
+      }
+
+      .product-info {
+        padding: 15px;
+      }
+
+      .product-title {
+        font-size: 16px;
+        margin-bottom: 10px;
+        font-weight: 600;
+      }
+
+      .product-price {
+        color: var(--primary);
+        font-weight: 700;
+        font-size: 18px;
+        margin-bottom: 15px;
+      }
+
+      .product-actions {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .add-to-cart {
+        background-color: var(--primary);
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: 500;
+      }
+
+      .wishlist {
+        background: none;
+        border: none;
+        color: var(--dark);
+        cursor: pointer;
+        font-size: 18px;
+      }
+
+      /* AI Recommendations */
+      .recommendations {
+        background-color: var(--light);
+        padding: 40px 0;
+      }
+
+      /* Footer */
+      footer {
+        background-color: var(--dark);
+        color: white;
+        padding: 50px 0 20px;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        margin-bottom: 40px;
+      }
+
+      .footer-column h3 {
+        font-size: 18px;
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 10px;
+      }
+
+      .footer-column h3::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 2px;
+        background-color: var(--primary);
+      }
+
+      .footer-column ul {
+        list-style: none;
+      }
+
+      .footer-column ul li {
+        margin-bottom: 10px;
+      }
+
+      .footer-column a {
+        color: #b2bec3;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .footer-column a:hover {
+        color: white;
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .social-icons a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        transition: all 0.3s;
+      }
+
+      .social-icons a:hover {
+        background-color: var(--primary);
+        transform: translateY(-3px);
+      }
+
+      .copyright {
+        text-align: center;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: #b2bec3;
+        font-size: 14px;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .header-content {
+          flex-direction: column;
+        }
+
+        .search-bar {
+          margin: 15px 0;
+          max-width: 100%;
+        }
+
+        .categories {
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        .categories li {
+          margin: 5px 10px;
+        }
+
+        .hero h1 {
+          font-size: 2rem;
+        }
+
+        .hero p {
+          font-size: 1rem;
+        }
+      }
+
+      /* Modal */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal-content {
+        background-color: white;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 500px;
+        padding: 30px;
+        position: relative;
+      }
+
+      .close-modal {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 24px;
+        cursor: pointer;
+        color: var(--dark);
+      }
+
+      .auth-forms {
+        display: none;
+      }
+
+      /* Cart Sidebar */
+      .cart-sidebar {
+        position: fixed;
+        top: 0;
+        right: -400px;
+        width: 100%;
+        max-width: 400px;
+        height: 100%;
+        background-color: white;
+        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+        z-index: 1001;
+        transition: right 0.3s ease;
+        overflow-y: auto;
+      }
+
+      .cart-sidebar.open {
+        right: 0;
+      }
+
+      .cart-header {
+        padding: 20px;
+        border-bottom: 1px solid var(--gray);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .close-cart {
+        font-size: 20px;
+        cursor: pointer;
+      }
+
+      .cart-items {
+        padding: 20px;
+      }
+
+      .cart-item {
+        display: flex;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid var(--gray);
+      }
+
+      .cart-item-img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 5px;
+      }
+
+      .cart-item-details {
+        flex: 1;
+        padding: 0 15px;
+      }
+
+      .cart-item-title {
+        font-weight: 600;
+        margin-bottom: 5px;
+      }
+
+      .cart-item-price {
+        color: var(--primary);
+        font-weight: 700;
+      }
+
+      .cart-item-actions {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+      }
+
+      .quantity-btn {
+        width: 30px;
+        height: 30px;
+        background-color: var(--light);
+        border: none;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .item-quantity {
+        margin: 0 10px;
+        font-weight: 600;
+      }
+
+      .remove-item {
+        margin-left: auto;
+        color: var(--secondary);
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
+
+      .cart-total {
+        padding: 20px;
+        border-top: 1px solid var(--gray);
+        display: flex;
+        justify-content: space-between;
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      .checkout-btn {
+        display: block;
+        width: calc(100% - 40px);
+        margin: 0 20px 20px;
+        padding: 15px;
+        text-align: center;
+        background-color: var(--success);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+      }
+
+      .overlay.active {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header Section -->
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <a href="#" class="logo">
+            <i class="fas fa-store"></i>
+            Estorex
+          </a>
+          <div class="search-bar">
+            <input type="text" placeholder="Search for products..." />
+            <button><i class="fas fa-search"></i></button>
+          </div>
+          <div class="nav-icons">
+            <div class="nav-icon" id="user-icon">
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="nav-icon" id="cart-icon">
+              <i class="fas fa-shopping-cart"></i>
+              <span class="cart-count">3</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+      <div class="container">
+        <ul class="categories">
+          <li><a href="#">Electronics</a></li>
+          <li><a href="#">Fashion</a></li>
+          <li><a href="#">Home & Kitchen</a></li>
+          <li><a href="#">Books</a></li>
+          <li><a href="#">Beauty</a></li>
+          <li><a href="#">Sports</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <h1>Smart Shopping Experience</h1>
+        <p>
+          Discover products tailored just for you with our AI-powered
+          recommendations
+        </p>
+        <a href="#products" class="btn">Shop Now</a>
+      </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="container" id="products">
+      <h2 class="section-title">Featured Products</h2>
+      <div class="products">
+        <!-- Product 1 -->
+        <div class="product-card">
+          <img
+            src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+            alt="Wireless Headphones"
+            class="product-img"
+          />
+          <div class="product-info">
+            <h3 class="product-title">Wireless Bluetooth Headphones</h3>
+            <div class="product-price">$89.99</div>
+            <div class="product-actions">
+              <button class="add-to-cart">Add to Cart</button>
+              <button class="wishlist"><i class="far fa-heart"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card">
+          <img
+            src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+            alt="Smart Watch"
+            class="product-img"
+          />
+          <div class="product-info">
+            <h3 class="product-title">Smart Watch Series 5</h3>
+            <div class="product-price">$199.99</div>
+            <div class="product-actions">
+              <button class="add-to-cart">Add to Cart</button>
+              <button class="wishlist"><i class="far fa-heart"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card">
+          <img
+            src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+            alt="Wireless Earbuds"
+            class="product-img"
+          />
+          <div class="product-info">
+            <h3 class="product-title">Wireless Earbuds Pro</h3>
+            <div class="product-price">$129.99</div>
+            <div class="product-actions">
+              <button class="add-to-cart">Add to Cart</button>
+              <button class="wishlist"><i class="far fa-heart"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-card">
+          <img
+            src="https://images.unsplash.com/photo-1541807084-5c52b6b3adef?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+            alt="Laptop"
+            class="product-img"
+          />
+          <div class="product-info">
+            <h3 class="product-title">Ultra-Thin Laptop</h3>
+            <div class="product-price">$999.99</div>
+            <div class="product-actions">
+              <button class="add-to-cart">Add to Cart</button>
+              <button class="wishlist"><i class="far fa-heart"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI Recommendations -->
+    <section class="recommendations">
+      <div class="container">
+        <h2 class="section-title">Recommended For You</h2>
+        <div class="products">
+          <!-- Recommended Product 1 -->
+          <div class="product-card">
+            <img
+              src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+              alt="Running Shoes"
+              class="product-img"
+            />
+            <div class="product-info">
+              <h3 class="product-title">Professional Running Shoes</h3>
+              <div class="product-price">$129.99</div>
+              <div class="product-actions">
+                <button class="add-to-cart">Add to Cart</button>
+                <button class="wishlist"><i class="far fa-heart"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recommended Product 2 -->
+          <div class="product-card">
+            <img
+              src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+              alt="Vitamin C Serum"
+              class="product-img"
+            />
+            <div class="product-info">
+              <h3 class="product-title">Vitamin C Facial Serum</h3>
+              <div class="product-price">$34.99</div>
+              <div class="product-actions">
+                <button class="add-to-cart">Add to Cart</button>
+                <button class="wishlist"><i class="far fa-heart"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recommended Product 3 -->
+          <div class="product-card">
+            <img
+              src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+              alt="Camera"
+              class="product-img"
+            />
+            <div class="product-info">
+              <h3 class="product-title">Digital SLR Camera</h3>
+              <div class="product-price">$599.99</div>
+              <div class="product-actions">
+                <button class="add-to-cart">Add to Cart</button>
+                <button class="wishlist"><i class="far fa-heart"></i></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recommended Product 4 -->
+          <div class="product-card">
+            <img
+              src="https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+              alt="Sunglasses"
+              class="product-img"
+            />
+            <div class="product-info">
+              <h3 class="product-title">Designer Sunglasses</h3>
+              <div class="product-price">$89.99</div>
+              <div class="product-actions">
+                <button class="add-to-cart">Add to Cart</button>
+                <button class="wishlist"><i class="far fa-heart"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-column">
+            <h3>Estorex</h3>
+            <p>
+              Intelligent e-commerce platform with AI-powered recommendations
+              and insights.
+            </p>
+            <div class="social-icons">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+          <div class="footer-column">
+            <h3>Shopping</h3>
+            <ul>
+              <li><a href="#">Featured Products</a></li>
+              <li><a href="#">Categories</a></li>
+              <li><a href="#">Deals & Offers</a></li>
+              <li><a href="#">New Arrivals</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Help</h3>
+            <ul>
+              <li><a href="#">Customer Support</a></li>
+              <li><a href="#">FAQs</a></li>
+              <li><a href="#">Returns & Refunds</a></li>
+              <li><a href="#">Track Order</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Newsletter</h3>
+            <p>
+              Subscribe to get special offers, free giveaways, and AI-powered
+              shopping tips.
+            </p>
+            <form>
+              <input
+                type="email"
+                placeholder="Your email address"
+                style="
+                  padding: 10px;
+                  width: 100%;
+                  margin-top: 10px;
+                  border-radius: 5px;
+                  border: none;
+                "
+              />
+              <button class="btn" style="margin-top: 10px; width: 100%">
+                Subscribe
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="copyright">
+          <p>&copy; 2023 Estorex. All rights reserved. Powered by AI.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Auth Modal -->
+    <div class="modal" id="auth-modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <div id="login-form" class="auth-forms">
+          <h2>Login to Your Account</h2>
+          <form style="margin-top: 20px">
+            <input
+              type="email"
+              placeholder="Email"
+              style="
+                padding: 12px;
+                width: 100%;
+                margin-bottom: 15px;
+                border-radius: 5px;
+                border: 1px solid var(--gray);
+              "
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              style="
+                padding: 12px;
+                width: 100%;
+                margin-bottom: 15px;
+                border-radius: 5px;
+                border: 1px solid var(--gray);
+              "
+            />
+            <button type="submit" class="btn" style="width: 100%">Login</button>
+          </form>
+          <p style="text-align: center; margin-top: 20px">
+            Don't have an account?
+            <a href="#" id="show-signup" style="color: var(--primary)"
+              >Sign up</a
+            >
+          </p>
+          <div style="text-align: center; margin-top: 20px">
+            <button class="btn" style="background-color: #db4437">
+              <i class="fab fa-google"></i> Login with Google
+            </button>
+          </div>
+        </div>
+        <div id="signup-form" class="auth-forms">
+          <h2>Create an Account</h2>
+          <form style="margin-top: 20px">
+            <input
+              type="text"
+              placeholder="Full Name"
+              style="
+                padding: 12px;
+                width: 100%;
+                margin-bottom: 15px;
+                border-radius: 5px;
+                border: 1px solid var(--gray);
+              "
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              style="
+                padding: 12px;
+                width: 100%;
+                margin-bottom: 15px;
+                border-radius: 5px;
+                border: 1px solid var(--gray);
+              "
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              style="
+                padding: 12px;
+                width: 100%;
+                margin-bottom: 15px;
+                border-radius: 5px;
+                border: 1px solid var(--gray);
+              "
+            />
+            <button type="submit" class="btn" style="width: 100%">
+              Sign Up
+            </button>
+          </form>
+          <p style="text-align: center; margin-top: 20px">
+            Already have an account?
+            <a href="#" id="show-login" style="color: var(--primary)">Login</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cart-sidebar">
+      <div class="cart-header">
+        <h2>Your Cart</h2>
+        <span class="close-cart">&times;</span>
+      </div>
+      <div class="cart-items">
+        <!-- Cart Item 1 -->
+        <div class="cart-item">
+          <img
+            src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+            alt="Wireless Headphones"
+            class="cart-item-img"
+          />
+          <div class="cart-item-details">
+            <div class="cart-item-title">Wireless Bluetooth Headphones</div>
+            <div class="cart-item-price">$89.99</div>
+            <div class="cart-item-actions">
+              <button class="quantity-btn">-</button>
+              <span class="item-quantity">1</span>
+              <button class="quantity-btn">+</button>
+              <button class="remove-item"><i class="fas fa-trash"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cart Item 2 -->
+        <div class="cart-item">
+          <img
+            src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+            alt="Smart Watch"
+            class="cart-item-img"
+          />
+          <div class="cart-item-details">
+            <div class="cart-item-title">Smart Watch Series 5</div>
+            <div class="cart-item-price">$199.99</div>
+            <div class="cart-item-actions">
+              <button class="quantity-btn">-</button>
+              <span class="item-quantity">1</span>
+              <button class="quantity-btn">+</button>
+              <button class="remove-item"><i class="fas fa-trash"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cart-total">
+        <span>Total:</span>
+        <span>$289.98</span>
+      </div>
+      <button class="checkout-btn">Proceed to Checkout</button>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <script>
+      // DOM Elements
+      const userIcon = document.getElementById("user-icon");
+      const cartIcon = document.getElementById("cart-icon");
+      const authModal = document.getElementById("auth-modal");
+      const closeModal = document.querySelector(".close-modal");
+      const showSignup = document.getElementById("show-signup");
+      const showLogin = document.getElementById("show-login");
+      const loginForm = document.getElementById("login-form");
+      const signupForm = document.getElementById("signup-form");
+      const cartSidebar = document.getElementById("cart-sidebar");
+      const closeCart = document.querySelector(".close-cart");
+      const overlay = document.getElementById("overlay");
+      const addToCartButtons = document.querySelectorAll(".add-to-cart");
+      const wishlistButtons = document.querySelectorAll(".wishlist");
+
+      // Event Listeners
+      userIcon.addEventListener("click", openAuthModal);
+      closeModal.addEventListener("click", closeAuthModal);
+      showSignup.addEventListener("click", showSignupForm);
+      showLogin.addEventListener("click", showLoginForm);
+      cartIcon.addEventListener("click", openCart);
+      closeCart.addEventListener("click", closeCartSidebar);
+      overlay.addEventListener("click", closeAll);
+
+      // Add to Cart functionality
+      addToCartButtons.forEach((button) => {
+        button.addEventListener("click", function () {
+          const productCard = this.closest(".product-card");
+          const productTitle =
+            productCard.querySelector(".product-title").textContent;
+          const productPrice =
+            productCard.querySelector(".product-price").textContent;
+          const productImage = productCard.querySelector(".product-img").src;
+
+          // In a real app, you would add the product to the cart array and update the UI
+          alert(`${productTitle} added to cart!`);
+
+          // Update cart count
+          const cartCount = document.querySelector(".cart-count");
+          cartCount.textContent = parseInt(cartCount.textContent) + 1;
+        });
+      });
+
+      // Wishlist functionality
+      wishlistButtons.forEach((button) => {
+        button.addEventListener("click", function () {
+          const icon = this.querySelector("i");
+          if (icon.classList.contains("far")) {
+            icon.classList.remove("far");
+            icon.classList.add("fas");
+            icon.style.color = "#ff6b6b";
+          } else {
+            icon.classList.remove("fas");
+            icon.classList.add("far");
+            icon.style.color = "";
+          }
+        });
+      });
+
+      // Functions
+      function openAuthModal() {
+        authModal.style.display = "flex";
+        overlay.classList.add("active");
+        showLoginForm(); // Show login form by default
+      }
+
+      function closeAuthModal() {
+        authModal.style.display = "none";
+        overlay.classList.remove("active");
+      }
+
+      function showSignupForm(e) {
+        e.preventDefault();
+        loginForm.style.display = "none";
+        signupForm.style.display = "block";
+      }
+
+      function showLoginForm(e) {
+        if (e) e.preventDefault();
+        signupForm.style.display = "none";
+        loginForm.style.display = "block";
+      }
+
+      function openCart() {
+        cartSidebar.classList.add("open");
+        overlay.classList.add("active");
+      }
+
+      function closeCartSidebar() {
+        cartSidebar.classList.remove("open");
+        overlay.classList.remove("active");
+      }
+
+      function closeAll() {
+        closeAuthModal();
+        closeCartSidebar();
+      }
+
+      // Close modal if clicked outside
+      window.addEventListener("click", function (event) {
+        if (event.target === authModal) {
+          closeAuthModal();
+        }
+      });
+
+      // Initialize by showing login form
+      showLoginForm();
+    </script>
+  </body>
+</html>
